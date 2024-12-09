@@ -1,4 +1,6 @@
-﻿using Domain.Configuration;
+﻿using Application.Handler;
+using Domain.Configuration;
+using Domain.Handler;
 using Domain.Service;
 using Infrastructure.Service;
 using Microsoft.Extensions.Configuration;
@@ -12,6 +14,7 @@ public static class ConfigurationServicesExtension
     {
         services.AddConfigurations(configuration);
         services.AddScoped<IGoogleTranslateService, GoogleTranslateService>();
+        services.AddScoped<ITranslateHandler, TranslateHandler>();
     }
 
     private static void AddConfigurations(this IServiceCollection services, IConfiguration configuration)
