@@ -1,3 +1,4 @@
+using System.Diagnostics.CodeAnalysis;
 using Domain.Handler;
 using Domain.Request;
 using Domain.Response;
@@ -5,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Api.Controllers;
 
+[ExcludeFromCodeCoverage]
 [ApiController]
 [Route("[controller]")]
 public class TranslateController(ITranslateHandler handler) : ControllerBase

@@ -5,12 +5,11 @@ using Google.Cloud.Translate.V3;
 
 namespace Infrastructure.Service;
 
-public class GoogleTranslateService(AppConfig appConfig) : IGoogleTranslateService
+public class GoogleTranslateService(AppConfig appConfig, TranslationServiceClient translationServiceClient) : IGoogleTranslateService
 {
     public async Task<string> TranslateTextAsync(TranslateModel translate, CancellationToken cancellationToken)
     {
-        var client = TranslationServiceClient.Create();
-        var response = await client.TranslateTextAsync(new TranslateTextRequest
+        var response = await translationServiceClient.TranslateTextAsync(new TranslateTextRequest
         {
             Contents = { translate.Text },
             TargetLanguageCode = translate.TargetLanguageCode,
